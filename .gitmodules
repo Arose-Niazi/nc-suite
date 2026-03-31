@@ -1,0 +1,9 @@
+[submodule "decomposition"]
+	path = decomposition
+	url = git@github.com:Arose-Niazi/nc-decomposition.git
+[submodule "roots"]
+	path = roots
+	url = git@github.com:Arose-Niazi/nc-roots-finder.git
+[submodule "euler"]
+	path = euler
+	url = git@github.com:Arose-Niazi/nc-improved-euler.git

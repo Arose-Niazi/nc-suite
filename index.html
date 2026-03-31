@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numerical Computing Suite — LU Decomposition, Root Finding, ODE Solvers | Step-by-Step</title>
+    <meta name="description" content="Free online numerical computing tools with step-by-step solutions. LU Decomposition (Doolittle, Crout, Cholesky, PLU), Root Finding (Bisection, Newton-Raphson, Secant), and ODE Solvers (Euler, Improved Euler, RK4).">
+    <meta name="keywords" content="numerical computing, numerical methods, LU decomposition, root finding, bisection method, Newton-Raphson, Euler method, Runge-Kutta, ODE solver, matrix calculator, linear algebra, step by step, calculator, math tools">
+    <meta name="author" content="Arose Niazi">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://nc.arose-niazi.me/">
+
+    <meta property="og:title" content="Numerical Computing Suite — Step-by-Step Math Tools">
+    <meta property="og:description" content="Free online calculators for LU Decomposition, Root Finding, and ODE solving with detailed step-by-step solutions.">
+    <meta property="og:url" content="https://nc.arose-niazi.me/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="NC Suite">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Numerical Computing Suite — Step-by-Step Math Tools">
+    <meta name="twitter:description" content="Free online calculators for LU Decomposition, Root Finding, and ODE solving.">
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Numerical Computing Suite",
+        "url": "https://nc.arose-niazi.me/",
+        "description": "Free online numerical computing tools with step-by-step solutions",
+        "author": { "@type": "Person", "name": "Arose Niazi", "url": "https://arose-niazi.me" }
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg: #f8fafc; --bg-card: #ffffff; --text: #1e293b; --text-muted: #64748b;
+            --border: #e2e8f0; --primary: #6366f1; --primary-hover: #4f46e5;
+            --header-bg: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --shadow: 0 1px 3px rgba(0,0,0,0.1); --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
+            --radius: 16px; --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a; --bg-card: #1e293b; --text: #e2e8f0; --text-muted: #94a3b8;
+            --border: #334155; --shadow: 0 1px 3px rgba(0,0,0,0.3); --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.4);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; transition: background 0.3s, color 0.3s; }
+
+        header { background: var(--header-bg); color: white; padding: 3rem 1rem; text-align: center; position: relative; }
+        header h1 { font-size: 2.25rem; font-weight: 800; margin-bottom: 0.5rem; }
+        header p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+        .theme-toggle { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.2); border: none; border-radius: 50%; width: 44px; height: 44px; font-size: 1.3rem; cursor: pointer; transition: background 0.2s; }
+        .theme-toggle:hover { background: rgba(255,255,255,0.3); }
+
+        main { max-width: 960px; margin: -2rem auto 2rem; padding: 0 1rem; position: relative; z-index: 1; }
+
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+
+        .tool-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 2rem; box-shadow: var(--shadow); transition: all 0.3s; text-decoration: none; color: var(--text);
+            display: flex; flex-direction: column; position: relative; overflow: hidden;
+        }
+        .tool-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
+        .tool-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: var(--primary); transform: scaleX(0); transition: transform 0.3s; transform-origin: left;
+        }
+        .tool-card:hover::before { transform: scaleX(1); }
+
+        .tool-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .tool-card h2 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .tool-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; flex-grow: 1; }
+        .tool-methods { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .method-tag {
+            background: #eef2ff; color: var(--primary); padding: 0.2rem 0.6rem; border-radius: 6px;
+            font-size: 0.8rem; font-weight: 600;
+        }
+        [data-theme="dark"] .method-tag { background: #1e1b4b; }
+        .tool-arrow { margin-top: 1rem; color: var(--primary); font-weight: 700; font-size: 0.95rem; }
+
+        .info-section { margin-top: 3rem; text-align: center; padding: 2rem; }
+        .info-section h2 { font-size: 1.5rem; margin-bottom: 0.75rem; color: var(--primary); }
+        .info-section p { color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.6; }
+
+        footer { text-align: center; padding: 2rem 1rem; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 3rem; }
+        footer a { color: var(--primary); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        footer p + p { margin-top: 0.3rem; }
+
+        @media (max-width: 640px) {
+            header h1 { font-size: 1.6rem; }
+            header { padding: 2rem 1rem; }
+            .tools-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📐 Numerical Computing Suite</h1>
+        <p>Step-by-step calculators for numerical methods — LU decomposition, root finding, ODE solving, and more.</p>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <main>
+        <div class="tools-grid">
+            <a href="./decomposition/" class="tool-card">
+                <div class="tool-icon">🔢</div>
+                <h2>LU Decomposition</h2>
+                <p>Decompose matrices into lower and upper triangular factors. Solve linear systems Ax = b, compute determinants, inverses, and condition numbers.</p>
+                <div class="tool-methods">
+                    <span class="method-tag">Doolittle</span>
+                    <span class="method-tag">Crout</span>
+                    <span class="method-tag">Cholesky</span>
+                    <span class="method-tag">PLU</span>
+                </div>
+                <div class="tool-arrow">Open calculator →</div>
+            </a>
+
+            <a href="./roots/" class="tool-card">
+                <div class="tool-icon">🎯</div>
+                <h2>Root Finding</h2>
+                <p>Find roots of nonlinear equations f(x) = 0. Visualize convergence, track error across iterations, and compare methods.</p>
+                <div class="tool-methods">
+                    <span class="method-tag">Bisection</span>
+                    <span class="method-tag">Regula Falsi</span>
+                    <span class="method-tag">Newton-Raphson</span>
+                    <span class="method-tag">Secant</span>
+                </div>
+                <div class="tool-arrow">Open calculator →</div>
+            </a>
+
+            <a href="./euler/" class="tool-card">
+                <div class="tool-icon">📈</div>
+                <h2>ODE Solvers</h2>
+                <p>Solve ordinary differential equations dy/dx = f(x, y) numerically. Compare methods with convergence plots and step-by-step breakdowns.</p>
+                <div class="tool-methods">
+                    <span class="method-tag">Euler</span>
+                    <span class="method-tag">Improved Euler</span>
+                    <span class="method-tag">RK4</span>
+                </div>
+                <div class="tool-arrow">Open calculator →</div>
+            </a>
+        </div>
+
+        <section class="info-section">
+            <h2>Why this suite?</h2>
+            <p>Built for students learning numerical methods. Every calculation shows the full step-by-step process — not just the answer. Understand the math, don't just compute it.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Built by <a href="https://arose-niazi.me" target="_blank" rel="noopener">Arose Niazi</a></p>
+        <p><a href="https://github.com/Arose-Niazi" target="_blank" rel="noopener">GitHub</a> · Numerical Computing Suite</p>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('themeToggle');
+        const saved = localStorage.getItem('nc-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', saved);
+        btn.textContent = saved === 'dark' ? '☀️' : '🌙';
+        btn.addEventListener('click', () => {
+            const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('nc-theme', next);
+            btn.textContent = next === 'dark' ? '☀️' : '🌙';
+        });
+    </script>
+</body>
+</html>

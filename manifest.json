@@ -1,0 +1,10 @@
+{
+    "name": "Numerical Computing Suite",
+    "short_name": "NC Suite",
+    "description": "Step-by-step calculators for numerical methods",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#f8fafc",
+    "theme_color": "#6366f1",
+    "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
