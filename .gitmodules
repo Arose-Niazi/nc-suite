@@ -7,3 +7,15 @@
 [submodule "euler"]
 	path = euler
 	url = git@github.com:Arose-Niazi/nc-improved-euler.git
+[submodule "iterative"]
+	path = iterative
+	url = git@github.com:Arose-Niazi/nc-iterative-methods.git
+[submodule "interpolation"]
+	path = interpolation
+	url = git@github.com:Arose-Niazi/nc-interpolation.git
+[submodule "integration"]
+	path = integration
+	url = git@github.com:Arose-Niazi/nc-integration.git
+[submodule "differentiation"]
+	path = differentiation
+	url = git@github.com:Arose-Niazi/nc-differentiation.git

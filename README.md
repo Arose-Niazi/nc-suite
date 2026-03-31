@@ -1,6 +1,6 @@
 # Numerical Computing Suite
 
-A collection of step-by-step numerical computing calculators.
+A complete collection of step-by-step numerical computing calculators.
 
 **Live:** [nc.arose-niazi.me](https://nc.arose-niazi.me)
 
@@ -11,26 +11,14 @@ A collection of step-by-step numerical computing calculators.
 | [LU Decomposition](https://nc.arose-niazi.me/decomposition/) | `/decomposition/` | Doolittle, Crout, Cholesky, PLU |
 | [Root Finding](https://nc.arose-niazi.me/roots/) | `/roots/` | Bisection, Regula Falsi, Newton-Raphson, Secant |
 | [ODE Solvers](https://nc.arose-niazi.me/euler/) | `/euler/` | Euler, Improved Euler, RK4 |
+| [Iterative Methods](https://nc.arose-niazi.me/iterative/) | `/iterative/` | Jacobi, Gauss-Seidel |
+| [Interpolation](https://nc.arose-niazi.me/interpolation/) | `/interpolation/` | Lagrange, Divided Diff, Newton Fwd/Bwd, Stirling's |
+| [Integration](https://nc.arose-niazi.me/integration/) | `/integration/` | Trapezoidal, Simpson's 1/3, Simpson's 3/8 |
+| [Differentiation](https://nc.arose-niazi.me/differentiation/) | `/differentiation/` | Forward, Backward, Stirling's, Finite Diff |
 
 ## Architecture
 
-Git submodules — each tool has its own repo with full history:
-- [nc-decomposition](https://github.com/Arose-Niazi/nc-decomposition)
-- [nc-roots-finder](https://github.com/Arose-Niazi/nc-roots-finder)
-- [nc-improved-euler](https://github.com/Arose-Niazi/nc-improved-euler)
-
-## Development
-
-```bash
-git clone --recursive https://github.com/Arose-Niazi/nc-suite.git
-# Open index.html in browser
-```
-
-## Deployment
-
-```bash
-docker compose up -d --build
-```
+Git submodules — each tool has its own repo with full history.
 
 ## Author
 
