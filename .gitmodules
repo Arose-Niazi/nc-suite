@@ -19,12 +19,3 @@
 [submodule "iterative"]
 	path = iterative
 	url = git@github.com:Arose-Niazi/nc-iterative.git
-[submodule "network"]
-	path = network
-	url = git@github.com:Arose-Niazi/network-bits-checker.git
-[submodule "subnetter"]
-	path = subnetter
-	url = git@github.com:Arose-Niazi/dccn-subnetter.git
-[submodule "scheduling"]
-	path = scheduling
-	url = git@github.com:Arose-Niazi/scheduling-solver.git
